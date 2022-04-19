@@ -19,8 +19,8 @@ public class InvoiceParkingImpl implements InvoiceParkingRepository {
 
     @Override
     public Invoice create(Invoice invoice) {
-        InvoiceEntity data = invoiceParkingPersistence.save(modelMapper.map(invoice, InvoiceEntity.class));
-        return modelMapper.map(data, Invoice.class);
+            InvoiceEntity data = invoiceParkingPersistence.save(modelMapper.map(invoice, InvoiceEntity.class));
+            return modelMapper.map(data, Invoice.class);
     }
 
     @Override
