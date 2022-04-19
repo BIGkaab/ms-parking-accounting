@@ -20,15 +20,34 @@ public class InvoiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private Integer employeeId;
+
+    @Column(nullable = false)
     private Integer spaceParkingId;
+
+    @Column(nullable = false)
     private LocalDate issueDate;
+
+    @Column(nullable = false)
     private String licensePlate;
+
+    @Column(nullable = false)
     private LocalTime parkingTime;
+
+    @Column(nullable = false)
     private BigDecimal amount;
+
+    @Column(nullable = false)
     private BigDecimal hourlyPrice;
-    private Integer currency;
-    private Integer paymentType;
+
+    @Column(nullable = false)
+    private String currency;
+
+    @Column(nullable = false)
+    private String paymentType;
+
     private Boolean paymented;
 
     @Override
