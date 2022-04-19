@@ -6,6 +6,8 @@ import com.parking.accounting.domain.Invoice;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @AllArgsConstructor
 public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommandService {
@@ -14,6 +16,9 @@ public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommand
 
     @Override
     public Invoice execute(Invoice invoice) {
+        String[] parts = invoice.getParkingTime().toString().split(":");
+        String timeString = parts[0] + "." + parts[1];
+        invoice.setAmount(new BigDecimal(timeString).multiply(invoice.getHourlyPrice()));
         return invoiceParkingRepository.create(invoice);
     }
 }
