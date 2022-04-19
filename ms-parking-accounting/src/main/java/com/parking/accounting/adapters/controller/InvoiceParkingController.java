@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class InvoiceParkingController {
     private final GetInvoiceParkingQueryService getInvoiceParkingQueryService;
 
     @PostMapping()
-    public ResponseEntity<InvoiceParkingDto> post(@RequestBody InvoiceParkingDto invoice){
+    public ResponseEntity<InvoiceParkingDto> post(@RequestBody @Valid InvoiceParkingDto invoice){
         Invoice data = createInvoiceParkingCommandService.execute(modelMapper.map(invoice, Invoice.class));
         return ResponseEntity.ok().body(modelMapper.map(data, InvoiceParkingDto.class));
     }
