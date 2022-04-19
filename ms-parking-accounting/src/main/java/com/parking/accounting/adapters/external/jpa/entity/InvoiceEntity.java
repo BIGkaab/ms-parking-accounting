@@ -27,8 +27,8 @@ public class InvoiceEntity {
     private LocalTime parkingTime;
     private BigDecimal amount;
     private BigDecimal hourlyPrice;
-    private Integer currency;
-    private Integer paymentType;
+    private String currency;
+    private String paymentType;
     private Boolean paymented;
 
     @Override
