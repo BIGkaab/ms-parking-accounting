@@ -3,11 +3,12 @@ package com.parking.accounting.adapters.controller;
 import com.parking.accounting.adapters.controller.dto.InvoiceParkingDto;
 import com.parking.accounting.application.port.in.CreateInvoiceParkingCommandService;
 import com.parking.accounting.application.port.in.GetInvoiceParkingQueryService;
+import com.parking.accounting.config.exception.BadRequestException;
 import com.parking.accounting.domain.Invoice;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,8 @@ public class InvoiceParkingController {
     @PostMapping()
     public ResponseEntity<InvoiceParkingDto> post(@RequestBody @Valid InvoiceParkingDto invoice){
         Invoice data = createInvoiceParkingCommandService.execute(modelMapper.map(invoice, Invoice.class));
-        return ResponseEntity.ok().body(modelMapper.map(data, InvoiceParkingDto.class));
+        return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(data, InvoiceParkingDto.class));
+
     }
 
     @ApiOperation(value = "List Invoices", notes = "Endpoint to list invoices", response = InvoiceParkingDto.class)
