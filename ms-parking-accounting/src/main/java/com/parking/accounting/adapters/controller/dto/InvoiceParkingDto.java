@@ -6,11 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @Builder
@@ -31,7 +27,7 @@ public class InvoiceParkingDto {
 
     @ApiModelProperty(value = "2022-04-19", required = true, notes = "Payment date")
     @NotNull(message = "the issueDate cannot be empty")
-    private LocalDate issueDate;
+    private String issueDate;
 
     @ApiModelProperty(value = "HOYCBB", required = true, notes = "vehicle plate code")
     @NotNull(message = "the licensePlate cannot be empty")
@@ -39,13 +35,13 @@ public class InvoiceParkingDto {
 
     @ApiModelProperty(value = "16:30:00", required = true, notes = "Vehicle parking time")
     @NotNull(message = "the parkingTime cannot be empty")
-    private LocalTime parkingTime;
+    private Double parkingTime;
 
-    private BigDecimal amount;
+    private Double amount;
 
     @ApiModelProperty(value = "2", required = true, notes = "parking price per hour")
     @NotNull(message = "the hourlyPrice cannot be empty")
-    private BigDecimal hourlyPrice;
+    private Double hourlyPrice;
 
     @ApiModelProperty(value = "USD", required = true, notes = "type of currency")
     @NotNull(message = "the currency cannot be empty")

@@ -19,10 +19,8 @@ public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommand
     @Override
     public Invoice execute(Invoice invoice) {
         try{
-        String[] parts = invoice.getParkingTime().toString().split(":");
-        String timeString = parts[0] + "." + parts[1];
-        invoice.setAmount(new BigDecimal(timeString).multiply(invoice.getHourlyPrice()));
-        return invoiceParkingRepository.create(invoice);
+            invoice.setAmount(invoice.getParkingTime() * invoice.getHourlyPrice());
+            return invoiceParkingRepository.create(invoice);
         }catch (Exception e){
             throw new InternalServerErrorException("An unexpected error has occurred");
         }
