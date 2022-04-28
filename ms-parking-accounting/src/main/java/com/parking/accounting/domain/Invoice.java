@@ -5,10 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,11 +13,11 @@ public class Invoice {
     private int id;
     private Integer employeeId;
     private Integer spaceParkingId;
-    private LocalDate issueDate;
+    private String issueDate;
     private String licensePlate;
-    private LocalTime parkingTime;
-    private BigDecimal amount;
-    private BigDecimal hourlyPrice;
+    private Double parkingTime;
+    private Double amount;
+    private Double hourlyPrice;
     private String currency;
     private String paymentType;
     private Boolean paymented;

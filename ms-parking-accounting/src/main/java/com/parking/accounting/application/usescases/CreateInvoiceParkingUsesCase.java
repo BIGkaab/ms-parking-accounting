@@ -2,8 +2,10 @@ package com.parking.accounting.application.usescases;
 
 import com.parking.accounting.application.port.in.CreateInvoiceParkingCommandService;
 import com.parking.accounting.application.port.out.InvoiceParkingRepository;
+import com.parking.accounting.config.exception.InternalServerErrorException;
 import com.parking.accounting.domain.Invoice;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,9 +18,11 @@ public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommand
 
     @Override
     public Invoice execute(Invoice invoice) {
-        String[] parts = invoice.getParkingTime().toString().split(":");
-        String timeString = parts[0] + "." + parts[1];
-        invoice.setAmount(new BigDecimal(timeString).multiply(invoice.getHourlyPrice()));
-        return invoiceParkingRepository.create(invoice);
+        try{
+            invoice.setAmount(invoice.getParkingTime() * invoice.getHourlyPrice());
+            return invoiceParkingRepository.create(invoice);
+        }catch (Exception e){
+            throw new InternalServerErrorException("An unexpected error has occurred");
+        }
     }
 }

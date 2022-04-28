@@ -3,9 +3,6 @@ package com.parking.accounting.adapters.external.jpa.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
@@ -28,19 +25,19 @@ public class InvoiceEntity {
     private Integer spaceParkingId;
 
     @Column(nullable = false)
-    private LocalDate issueDate;
+    private String issueDate;
 
     @Column(nullable = false)
     private String licensePlate;
 
     @Column(nullable = false)
-    private LocalTime parkingTime;
+    private Double parkingTime;
 
     @Column(nullable = false)
-    private BigDecimal amount;
+    private Double amount;
 
     @Column(nullable = false)
-    private BigDecimal hourlyPrice;
+    private Double hourlyPrice;
 
     @Column(nullable = false)
     private String currency;
