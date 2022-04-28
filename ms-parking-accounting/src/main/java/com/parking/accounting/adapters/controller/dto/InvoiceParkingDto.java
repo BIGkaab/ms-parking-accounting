@@ -17,7 +17,7 @@ public class InvoiceParkingDto {
 
     private int id;
 
-    @ApiModelProperty(value = "1", required = true, notes = "employee identification number")
+    @ApiModelProperty(value = "1", required = true, notes = "employee identification number", example = "99")
     @NotNull(message = "the employeeId cannot be empty")
     private Integer employeeId;
 
