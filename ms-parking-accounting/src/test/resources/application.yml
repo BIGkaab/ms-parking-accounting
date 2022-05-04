@@ -1,0 +1,7 @@
+logging:
+  level:
+    org:
+      springframework: off
+      hibernate:
+        SQL: debug
+    root: off
