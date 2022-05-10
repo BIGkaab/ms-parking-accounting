@@ -3,6 +3,7 @@ package com.parking.accounting.unit.application.usescases;
 import com.parking.accounting.DummyData;
 import com.parking.accounting.application.port.out.InvoiceParkingRepository;
 import com.parking.accounting.application.usescases.GetInvoiceParkingUsesCase;
+import com.parking.accounting.config.exception.InternalServerErrorException;
 import com.parking.accounting.domain.Invoice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,6 +34,13 @@ class GetInvoiceParkingUsesCaseTest {
         when(invoiceParkingRepository.FindAll()).thenReturn(invoicesDummy);
         List<Invoice> invoices = getInvoiceParkingUsesCase.execute();
         assertEquals(invoices.get(0).getEmployeeId(), invoicesDummy.get(0).getEmployeeId());
+    }
+
+    @Test()
+    void executeInternalServerError() {
+        when(invoiceParkingRepository.FindAll()).thenThrow();
+        Throwable throwable = assertThrows(InternalServerErrorException.class, () -> getInvoiceParkingUsesCase.execute());
+        assertEquals("An unexpected error has occurred", throwable.getMessage());
     }
 
 }
