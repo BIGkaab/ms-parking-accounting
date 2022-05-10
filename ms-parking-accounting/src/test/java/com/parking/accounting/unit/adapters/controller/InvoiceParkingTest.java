@@ -1,7 +1,8 @@
-package com.parking.accounting.adapters.controller;
+package com.parking.accounting.unit.adapters.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.parking.accounting.DummyData;
+import com.parking.accounting.adapters.controller.InvoiceParkingController;
 import com.parking.accounting.application.port.in.CreateInvoiceParkingCommandService;
 import com.parking.accounting.application.port.in.GetInvoiceParkingQueryService;
 import org.junit.jupiter.api.Test;

@@ -5,10 +5,7 @@ import com.parking.accounting.application.port.out.InvoiceParkingRepository;
 import com.parking.accounting.config.exception.InternalServerErrorException;
 import com.parking.accounting.domain.Invoice;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @Service
 @AllArgsConstructor
