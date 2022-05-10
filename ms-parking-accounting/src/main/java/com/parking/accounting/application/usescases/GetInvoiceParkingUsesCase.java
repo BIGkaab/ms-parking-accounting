@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.parking.accounting.config.utils.Emun.MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION;
+
 @Service
 @AllArgsConstructor
 public class GetInvoiceParkingUsesCase implements GetInvoiceParkingQueryService {
@@ -20,7 +22,7 @@ public class GetInvoiceParkingUsesCase implements GetInvoiceParkingQueryService 
         try{
             return invoiceParkingRepository.FindAll();
         }catch (Exception e){
-            throw new InternalServerErrorException("An unexpected error has occurred");
+            throw new InternalServerErrorException(MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION);
         }
     }
 }

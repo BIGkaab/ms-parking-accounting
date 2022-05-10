@@ -9,11 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Properties;
-
+import static com.parking.accounting.config.utils.Emun.MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -38,6 +36,6 @@ class CreateInvoiceParkingUsesCaseTest {
     void executeInternalServerError() {
         when(invoiceParkingRepository.create(any())).thenThrow(new InternalServerErrorException(any()));
         Throwable throwable = assertThrows(InternalServerErrorException.class, () -> createInvoiceParkingUsesCase.execute(DummyData.invoice));
-        assertEquals("An unexpected error has occurred", throwable.getMessage());
+        assertEquals(MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION, throwable.getMessage());
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.is;
+import static com.parking.accounting.config.utils.Emun.ROUTE_INVOICES;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(InvoiceParkingController.class)
 public class InvoiceParkingTest {
 
-    //TODO por que no marca la advertencia con el @Autowired
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -36,11 +35,9 @@ public class InvoiceParkingTest {
     @MockBean
     GetInvoiceParkingQueryService getInvoiceParkingQueryService;
 
-    static final String URL_INVOICE = "/api/invoices";
-
     @Test
     void createInvoiceOkTest() throws Exception{
-        mockMvc.perform(post(URL_INVOICE)
+        mockMvc.perform(post(ROUTE_INVOICES)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(DummyData.invoiceParkingDto)))
                 .andDo(print())
@@ -49,7 +46,7 @@ public class InvoiceParkingTest {
 
     @Test
     void createInvoiceBabRequestTest() throws Exception{
-        mockMvc.perform(post(URL_INVOICE)
+        mockMvc.perform(post(ROUTE_INVOICES)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(DummyData.invoiceBadRequest)))
                 .andDo(print())
@@ -59,7 +56,7 @@ public class InvoiceParkingTest {
     @Test
     void getInvoicesOkTest() throws Exception{
         when(modelMapper.map(any(), any())).thenReturn(DummyData.invoiceParkingDto);
-        mockMvc.perform(get(URL_INVOICE)
+        mockMvc.perform(get(ROUTE_INVOICES)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk()).andReturn().getResponse();

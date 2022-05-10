@@ -7,6 +7,8 @@ import com.parking.accounting.domain.Invoice;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.parking.accounting.config.utils.Emun.MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION;
+
 @Service
 @AllArgsConstructor
 public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommandService {
@@ -19,7 +21,7 @@ public class CreateInvoiceParkingUsesCase implements CreateInvoiceParkingCommand
             invoice.setAmount(invoice.getParkingTime() * invoice.getHourlyPrice());
             return invoiceParkingRepository.create(invoice);
         }catch (Exception e){
-            throw new InternalServerErrorException("An unexpected error has occurred");
+            throw new InternalServerErrorException(MESSAGE_INTERNAL_SERVER_ERROR_EXCEPTION);
         }
     }
 }
