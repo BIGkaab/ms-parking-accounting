@@ -3,7 +3,6 @@ package com.parking.accounting.adapters.controller;
 import com.parking.accounting.adapters.controller.dto.InvoiceParkingDto;
 import com.parking.accounting.application.port.in.CreateInvoiceParkingCommandService;
 import com.parking.accounting.application.port.in.GetInvoiceParkingQueryService;
-import com.parking.accounting.config.exception.ForbiddenException;
 import com.parking.accounting.config.exception.ResponseException;
 import com.parking.accounting.domain.Invoice;
 import io.swagger.annotations.ApiOperation;
@@ -19,10 +18,12 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.parking.accounting.config.utils.Emun.*;
+
 @RestController
 @AllArgsConstructor
-@ApiOperation(value = "/api/invoices", tags = "Invoices Parking Controller")
-@RequestMapping("/api/invoices")
+@ApiOperation(value = ROUTE_INVOICES, tags = "Invoices Parking Controller")
+@RequestMapping(ROUTE_INVOICES)
 public class InvoiceParkingController {
 
     private final ModelMapper modelMapper;
@@ -31,11 +32,11 @@ public class InvoiceParkingController {
 
     @ApiOperation(value = "New Invoice", notes = "Endpoint to save a new invoice", response = InvoiceParkingDto.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "CREATED", response = InvoiceParkingDto.class),
-            @ApiResponse(code = 401, message = "UNAUTHORIZED", response = ResponseException.class),
-            @ApiResponse(code = 403, message = "FORBIDDEN", response = ResponseException.class),
-            @ApiResponse(code = 404, message = "NOT FOUND", response = ResponseException.class),
-            @ApiResponse(code = 500, message = "SERVER INTERNAL ERROR", response = ResponseException.class)
+            @ApiResponse(code = 201, message = API_RESPONSE_201, response = InvoiceParkingDto.class),
+            @ApiResponse(code = 401, message = API_RESPONSE_401, response = ResponseException.class),
+            @ApiResponse(code = 403, message = API_RESPONSE_403, response = ResponseException.class),
+            @ApiResponse(code = 404, message = API_RESPONSE_404, response = ResponseException.class),
+            @ApiResponse(code = 500, message = API_RESPONSE_500, response = ResponseException.class)
 
     })
     @PostMapping()
@@ -47,11 +48,11 @@ public class InvoiceParkingController {
 
     @ApiOperation(value = "List Invoices", notes = "Endpoint to list invoices", response = InvoiceParkingDto.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS", response = InvoiceParkingDto.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "UNAUTHORIZED", response = ResponseException.class),
-            @ApiResponse(code = 403, message = "FORBIDDEN", response = ResponseException.class),
-            @ApiResponse(code = 404, message = "NOT FOUND", response = ResponseException.class),
-            @ApiResponse(code = 500, message = "SERVER INTERNAL ERROR", response = ResponseException.class)
+            @ApiResponse(code = 200, message = API_RESPONSE_200, response = InvoiceParkingDto.class, responseContainer = "List"),
+            @ApiResponse(code = 401, message = API_RESPONSE_401, response = ResponseException.class),
+            @ApiResponse(code = 403, message = API_RESPONSE_403, response = ResponseException.class),
+            @ApiResponse(code = 404, message = API_RESPONSE_404, response = ResponseException.class),
+            @ApiResponse(code = 500, message = API_RESPONSE_500, response = ResponseException.class)
     })
     @GetMapping()
     public ResponseEntity<List<InvoiceParkingDto>> get(){
