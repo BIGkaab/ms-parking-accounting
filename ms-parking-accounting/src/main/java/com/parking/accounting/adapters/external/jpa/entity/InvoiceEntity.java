@@ -46,17 +46,4 @@ public class InvoiceEntity {
     private String paymentType;
 
     private Boolean paymented;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        InvoiceEntity that = (InvoiceEntity) o;
-        return id == that.id && Objects.equals(employeeId, that.employeeId) && Objects.equals(spaceParkingId, that.spaceParkingId) && Objects.equals(issueDate, that.issueDate) && Objects.equals(licensePlate, that.licensePlate) && Objects.equals(parkingTime, that.parkingTime) && Objects.equals(amount, that.amount) && Objects.equals(hourlyPrice, that.hourlyPrice) && Objects.equals(currency, that.currency) && Objects.equals(paymentType, that.paymentType) && Objects.equals(paymented, that.paymented);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, employeeId, spaceParkingId, issueDate, licensePlate, parkingTime, amount, hourlyPrice, currency, paymentType, paymented);
-    }
 }

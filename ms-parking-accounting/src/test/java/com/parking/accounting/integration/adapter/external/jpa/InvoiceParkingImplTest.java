@@ -30,6 +30,6 @@ public class InvoiceParkingImplTest {
         List<Invoice> invoices = invoiceParkingRepository.FindAll();
         List<Invoice> invoicesExpected = new ArrayList<>();
         invoicesExpected.add(DummyData.invoice);
-        assertEquals(invoicesExpected, invoices);
+        assertEquals(invoicesExpected.get(0), invoices.get(0));
     }
 }
